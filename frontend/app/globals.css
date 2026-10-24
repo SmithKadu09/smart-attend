@@ -1,0 +1,769 @@
+
+@import "tailwindcss";
+
+/* =========================================
+   SMARTATTEND — CREATIVE CLAY DESIGN SYSTEM
+   ========================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Core colors */
+  --background: #fff8ed;
+  --foreground: #293a32;
+  --surface: #fffdf8;
+  --surface-soft: #f5eee2;
+
+  /* Color palette */
+  --green: #cdeed4;
+  --green-strong: #347451;
+
+  --peach: #ffdccb;
+  --peach-strong: #a94f36;
+
+  --lavender: #e5d8fb;
+  --lavender-strong: #7550a5;
+
+  --yellow: #ffe5a9;
+  --yellow-strong: #8d641c;
+
+  --pink: #f8d8e4;
+  --pink-strong: #a4496b;
+
+  --mint: #c9eee8;
+  --mint-strong: #28756d;
+
+  --blue: #d8e8ff;
+  --blue-strong: #4168a7;
+
+  --border: #e9dfd0;
+  --muted: #747c72;
+
+  /* Rounded shapes */
+  --radius-card: 30px;
+  --radius-control: 18px;
+  --radius-pill: 999px;
+
+  /* Clay shadows */
+  --shadow-clay:
+    10px 12px 22px rgba(151, 129, 101, 0.16),
+    -8px -8px 19px rgba(255, 255, 255, 0.96),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95);
+
+  --shadow-clay-hover:
+    14px 17px 28px rgba(151, 129, 101, 0.21),
+    -7px -7px 17px rgba(255, 255, 255, 1),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95);
+
+  --shadow-inset:
+    inset 4px 4px 9px rgba(151, 129, 101, 0.13),
+    inset -4px -4px 9px rgba(255, 255, 255, 0.96);
+
+  --shadow-green:
+    7px 9px 16px rgba(91, 138, 103, 0.22),
+    -5px -5px 12px rgba(255, 255, 255, 0.98);
+
+  --transition: 180ms ease;
+}
+
+/* =========================================
+   RESET AND BASE STYLES
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 5% 4%,
+      rgba(205, 238, 212, 0.55),
+      transparent 28%
+    ),
+    radial-gradient(
+      ellipse at 94% 12%,
+      rgba(229, 216, 251, 0.48),
+      transparent 27%
+    ),
+    radial-gradient(
+      ellipse at 88% 75%,
+      rgba(255, 220, 203, 0.24),
+      transparent 25%
+    ),
+    var(--background);
+
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+::selection {
+  color: var(--foreground);
+  background: var(--yellow);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--lavender-strong);
+  outline-offset: 4px;
+}
+
+/* =========================================
+   CLAY CARDS
+   ========================================= */
+
+.clay-card {
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-card);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffefa 0%,
+      #fcf7ee 55%,
+      #f7f0e4 100%
+    );
+
+  box-shadow:
+    12px 14px 24px rgba(133, 110, 77, 0.17),
+    -9px -9px 21px rgba(255, 255, 255, 0.98),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.98),
+    inset -1px -1px 3px rgba(190, 166, 130, 0.08);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.clay-card-hover:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    15px 18px 28px rgba(133, 110, 77, 0.21),
+    -7px -7px 18px rgba(255, 255, 255, 1),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.98);
+}
+
+.clay-panel {
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  border-radius: 32px;
+
+  background: rgba(255, 253, 248, 0.78);
+
+  box-shadow:
+    10px 12px 22px rgba(133, 110, 77, 0.15),
+    -8px -8px 18px rgba(255, 255, 255, 0.96),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+.clay-inset {
+  border: 1px solid rgba(232, 221, 204, 0.7);
+  border-radius: 22px;
+  background: var(--surface-soft);
+  box-shadow: var(--shadow-inset);
+}
+
+/* =========================================
+   CLAY ICON CONTAINERS
+   ========================================= */
+
+.clay-icon {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  border-radius: 21px;
+
+  box-shadow:
+    6px 7px 13px rgba(133, 110, 77, 0.14),
+    -5px -5px 12px rgba(255, 255, 255, 0.96),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.clay-icon-green {
+  background: linear-gradient(145deg, #e3f8e7, #bfe8ca);
+  color: var(--green-strong);
+}
+
+.clay-icon-peach {
+  background: linear-gradient(145deg, #ffeadf, #ffd0b9);
+  color: var(--peach-strong);
+}
+
+.clay-icon-lavender {
+  background: linear-gradient(145deg, #f0e8ff, #d8c5f6);
+  color: var(--lavender-strong);
+}
+
+.clay-icon-yellow {
+  background: linear-gradient(145deg, #fff0c7, #ffdfa0);
+  color: var(--yellow-strong);
+}
+
+.clay-icon-pink {
+  background: linear-gradient(145deg, #ffebf2, #f5cddd);
+  color: var(--pink-strong);
+}
+
+.clay-icon-mint {
+  background: linear-gradient(145deg, #e2f9f5, #bce9e1);
+  color: var(--mint-strong);
+}
+
+.clay-icon-blue {
+  background: linear-gradient(145deg, #eaf2ff, #cfdefa);
+  color: var(--blue-strong);
+}
+
+/* =========================================
+   PRIMARY CLAY BUTTONS
+   ========================================= */
+
+.clay-button {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 13px 23px;
+
+  border: 1px solid rgba(255, 255, 255, 0.98);
+  border-radius: 19px;
+
+  background: linear-gradient(145deg, #dff7e3, #bde6c8);
+  color: #28573d;
+
+  font-weight: 750;
+  text-align: center;
+
+  box-shadow:
+    7px 8px 14px rgba(91, 138, 103, 0.21),
+    -5px -5px 12px rgba(255, 255, 255, 0.98),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.85);
+
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.clay-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+
+  box-shadow:
+    9px 11px 17px rgba(91, 138, 103, 0.26),
+    -4px -4px 10px rgba(255, 255, 255, 0.98);
+}
+
+.clay-button:active:not(:disabled) {
+  transform: translateY(1px);
+
+  box-shadow:
+    inset 4px 4px 9px rgba(91, 138, 103, 0.18),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.9);
+}
+
+.clay-button-peach {
+  background: linear-gradient(145deg, #ffeadf, #ffd0b9);
+  color: var(--peach-strong);
+
+  box-shadow:
+    6px 7px 14px rgba(169, 79, 54, 0.15),
+    -5px -5px 12px rgba(255, 255, 255, 0.96),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.clay-button-lavender {
+  background: linear-gradient(145deg, #f0e8ff, #d9c7f7);
+  color: var(--lavender-strong);
+
+  box-shadow:
+    6px 7px 14px rgba(117, 80, 165, 0.16),
+    -5px -5px 12px rgba(255, 255, 255, 0.96),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.clay-button-yellow {
+  background: linear-gradient(145deg, #fff0c7, #ffdfa0);
+  color: var(--yellow-strong);
+
+  box-shadow:
+    6px 7px 14px rgba(141, 100, 28, 0.15),
+    -5px -5px 12px rgba(255, 255, 255, 0.96),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.clay-button-pink {
+  background: linear-gradient(145deg, #ffebf2, #f5cddd);
+  color: var(--pink-strong);
+}
+
+.clay-button-blue {
+  background: linear-gradient(145deg, #eaf2ff, #cfdefa);
+  color: var(--blue-strong);
+}
+
+.clay-button-outline {
+  background: rgba(255, 253, 248, 0.85);
+  color: var(--foreground);
+  box-shadow: var(--shadow-clay);
+}
+
+.clay-button-outline:hover:not(:disabled) {
+  background: #ffffff;
+}
+
+/* =========================================
+   CLAY FORM FIELDS
+   ========================================= */
+
+.clay-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+
+  background: var(--surface-soft);
+  color: var(--foreground);
+
+  box-shadow: var(--shadow-inset);
+
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.clay-input::placeholder {
+  color: #96968a;
+}
+
+.clay-input:focus {
+  border-color: var(--lavender-strong);
+  background: #fffdf9;
+  outline: none;
+
+  box-shadow:
+    inset 2px 2px 5px rgba(151, 129, 101, 0.08),
+    0 0 0 3px rgba(229, 216, 251, 0.55);
+}
+
+.clay-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* =========================================
+   BADGES AND STATUS INDICATORS
+   ========================================= */
+
+.clay-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-pill);
+
+  background: var(--mint);
+  color: var(--mint-strong);
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.clay-badge-green {
+  background: var(--green);
+  color: var(--green-strong);
+}
+
+.clay-badge-peach {
+  background: var(--peach);
+  color: var(--peach-strong);
+}
+
+.clay-badge-lavender {
+  background: var(--lavender);
+  color: var(--lavender-strong);
+}
+
+.clay-badge-yellow {
+  background: var(--yellow);
+  color: var(--yellow-strong);
+}
+
+.clay-badge-pink {
+  background: var(--pink);
+  color: var(--pink-strong);
+}
+
+.clay-badge-blue {
+  background: var(--blue);
+  color: var(--blue-strong);
+}
+
+.clay-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* =========================================
+   TYPOGRAPHY UTILITIES
+   ========================================= */
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-green {
+  color: var(--green-strong);
+}
+
+.text-peach {
+  color: var(--peach-strong);
+}
+
+.text-lavender {
+  color: var(--lavender-strong);
+}
+
+.text-yellow {
+  color: var(--yellow-strong);
+}
+
+.text-pink {
+  color: var(--pink-strong);
+}
+
+.text-mint {
+  color: var(--mint-strong);
+}
+
+.text-blue {
+  color: var(--blue-strong);
+}
+
+/* =========================================
+   LANDING PAGE DECORATIONS
+   ========================================= */
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+.hero-orb-green {
+  background: radial-gradient(circle at 30% 25%, #edfff0, #bce7c8);
+  box-shadow:
+    12px 14px 25px rgba(91, 138, 103, 0.15),
+    -8px -8px 18px rgba(255, 255, 255, 0.9);
+}
+
+.hero-orb-peach {
+  background: radial-gradient(circle at 30% 25%, #fff0e8, #ffc9ae);
+  box-shadow:
+    10px 12px 22px rgba(169, 79, 54, 0.12),
+    -6px -6px 15px rgba(255, 255, 255, 0.9);
+}
+
+.hero-orb-lavender {
+  background: radial-gradient(circle at 30% 25%, #f5efff, #d4bdf6);
+  box-shadow:
+    10px 12px 22px rgba(117, 80, 165, 0.12),
+    -6px -6px 15px rgba(255, 255, 255, 0.9);
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(151, 129, 101, 0.22),
+    transparent
+  );
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes float-gently {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+.animate-float {
+  animation: float-gently 5s ease-in-out infinite;
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 3s ease-in-out infinite;
+}
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d9cdbb transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #d9cdbb;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #b9a991;
+}
+
+/* =========================================
+   RESPONSIVE AND ACCESSIBILITY
+   ========================================= */
+
+@media (max-width: 640px) {
+  :root {
+    --radius-card: 24px;
+  }
+
+  .clay-card {
+    border-radius: 24px;
+  }
+
+  .clay-panel {
+    border-radius: 26px;
+  }
+
+  .clay-button {
+    padding: 12px 18px;
+  }
+
+  .clay-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================
+   CARTOON-STYLE SMARTATTEND UI
+   ========================================= */
+
+/* Chunky, friendly typography */
+body {
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  letter-spacing: -0.2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -1.2px;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h1 {
+  letter-spacing: -2px;
+  text-shadow: 2px 3px 0 rgba(52, 116, 81, 0.08);
+}
+
+p {
+  line-height: 1.75;
+}
+
+/* Chunky cartoon buttons */
+.clay-button {
+  position: relative;
+  border: 2px solid rgba(41, 58, 50, 0.12);
+  border-radius: 22px;
+  font-weight: 900;
+  letter-spacing: 0.1px;
+  box-shadow:
+    0 6px 0 rgba(41, 58, 50, 0.12),
+    0 10px 18px rgba(91, 138, 103, 0.17),
+    inset 0 3px 0 rgba(255, 255, 255, 0.72);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    filter 150ms ease;
+}
+
+.clay-button:hover:not(:disabled) {
+  transform: translateY(-3px) rotate(-0.5deg);
+  filter: saturate(1.08);
+  box-shadow:
+    0 9px 0 rgba(41, 58, 50, 0.10),
+    0 14px 22px rgba(91, 138, 103, 0.2),
+    inset 0 3px 0 rgba(255, 255, 255, 0.8);
+}
+
+.clay-button:active:not(:disabled) {
+  transform: translateY(3px) scale(0.98);
+  box-shadow:
+    0 2px 0 rgba(41, 58, 50, 0.12),
+    inset 0 3px 6px rgba(41, 58, 50, 0.08);
+}
+
+/* Extra playful button colors */
+.clay-button-peach,
+.clay-button-lavender,
+.clay-button-yellow,
+.clay-button-pink,
+.clay-button-blue {
+  border: 2px solid rgba(41, 58, 50, 0.1);
+}
+
+/* Cartoon-like cards */
+.clay-card {
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 32px;
+}
+
+.clay-card-hover:hover {
+  transform: translateY(-5px) rotate(-0.25deg);
+}
+
+/* Rounded icon containers */
+.clay-icon {
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 23px;
+}
+
+/* Friendly pill badges */
+.clay-badge {
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  font-weight: 900;
+  letter-spacing: 0.15px;
+}
+
+/* Playful form fields */
+.clay-input {
+  border: 2px solid #e9dfd0;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.clay-input:focus {
+  border-color: var(--lavender-strong);
+}
+
+/* Friendly selection */
+::selection {
+  background: #ffe5a9;
+  color: #293a32;
+}
+
+/* Keep animations accessible */
+@media (prefers-reduced-motion: reduce) {
+  .clay-button,
+  .clay-card,
+  .clay-card-hover {
+    transition: none;
+  }
+
+  .clay-button:hover:not(:disabled),
+  .clay-card-hover:hover {
+    transform: none;
+  }
+}
