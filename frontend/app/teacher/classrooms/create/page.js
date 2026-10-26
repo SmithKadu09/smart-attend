@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const API_URL = "http://127.0.0.1:8000";
+import API_URL from "@/lib/api";
 
 export default function CreateClassroomPage() {
   const router = useRouter();

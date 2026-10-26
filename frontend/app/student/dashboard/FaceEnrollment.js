@@ -4,9 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
-
+import API_URL from "@/lib/api";
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 export default function FaceEnrollment() {

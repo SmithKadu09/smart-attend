@@ -10,6 +10,8 @@ import {
   Input,
 } from "@/components/ui";
 
+import API_URL from "@/lib/api";
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -18,6 +20,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+ 
 
   
 async function handleSubmit(event) {
@@ -30,7 +33,7 @@ async function handleSubmit(event) {
   }
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/auth/login", {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

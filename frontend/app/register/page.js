@@ -5,6 +5,7 @@ import { useState , Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button, Badge, Input } from "@/components/ui";
+import API_URL from "@/lib/api";
 
 
 
@@ -59,7 +60,7 @@ function RegisterForm()  {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/auth/register", {
+            const response = awaitfetch(`${API_URL}/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

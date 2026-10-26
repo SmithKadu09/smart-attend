@@ -63,7 +63,7 @@ export default function JoinClassroomPage() {
     setJoining(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/classrooms/join", {
+      const response = await fetch(`${API_URL}/classrooms/join`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
