@@ -6,11 +6,8 @@ from app.routes.auth import router as auth_router
 from app.routes.classrooms import router as classrooms_router
 from app.routes.biometrics import router as biometrics_router
 from app.routes.attendance import router as attendance_router
-from fastapi.middleware.cors import CORSMiddleware
-
 
 app = FastAPI(title="SmartAttend API")
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,7 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 app.include_router(auth_router)
 app.include_router(classrooms_router)
