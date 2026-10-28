@@ -15,6 +15,21 @@ from app.models.classroom import Classroom
 from app.models.enrollment import Enrollment
 from app.models.attendance_session import AttendanceSession
 from app.models.attendance_record import AttendanceRecord
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    status,
+    UploadFile,
+    File,
+)
+
+from app.services.attendance_service import (
+    create_attendance_session,
+    finalize_attendance_session,
+    review_attendance_record,
+    process_classroom_photo,
+)
 
 from app.services.attendance_service import (
     create_attendance_session,
@@ -442,3 +457,60 @@ def update_attendance_record(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=message,
         )
+
+
+
+
+@router.post("/sessions/{session_id}/photo")
+async def upload_classroom_photo(
+    session_id: UUID,
+    image: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
+    allowed_types = {
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+    }
+
+    if image.content_type not in allowed_types:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only JPEG, PNG, and WebP images are allowed.",
+        )
+
+    max_size = 5 * 1024 * 1024
+
+    try:
+        image_bytes = await image.read(max_size + 1)
+
+        if len(image_bytes) > max_size:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Image size must not exceed 5 MB.",
+            )
+
+        if not image_bytes:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="The uploaded image is empty.",
+            )
+
+        result = process_classroom_photo(
+            db=db,
+            user_id=get_user_id(current_user),
+            session_id=session_id,
+            image_bytes=image_bytes,
+        )
+
+        return result
+
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(exc),
+        )
+
+    finally:
+        await image.close()
